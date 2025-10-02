@@ -12,9 +12,9 @@ public class RetrofitConfig {
         Whenever we need the object for Retrofit, Spring boot will call this function
     */
     @Bean
-    public Retrofit retrofit(){
+    public Retrofit retrofit(FakeStoreConfig fakeStoreConfig){
         return new Retrofit.Builder()
-                .baseUrl("https://fakestoreapi.in/api/")
+                .baseUrl(fakeStoreConfig.getBaseUrl())
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
     }
