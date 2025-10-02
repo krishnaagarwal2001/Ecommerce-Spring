@@ -3,6 +3,7 @@ package com.example.EcommerceSpring.controllers;
 import com.example.EcommerceSpring.dto.CategoryDTO;
 import com.example.EcommerceSpring.services.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -54,8 +55,12 @@ In Golang, we can use uberFX lib for DI.
          this.categoryService = _categoryService;
      }
 
+     /*
+        ResponseEntity is used to configure the response (status code, headers etc.)
+     */
     @GetMapping
-    public List<CategoryDTO> getAllCategories() throws IOException {
-        return this.categoryService.getAllCategories();
+    public ResponseEntity<List<CategoryDTO>> getAllCategories() throws IOException {
+        List<CategoryDTO> response = this.categoryService.getAllCategories();
+        return ResponseEntity.ok(response);
     }
 }
