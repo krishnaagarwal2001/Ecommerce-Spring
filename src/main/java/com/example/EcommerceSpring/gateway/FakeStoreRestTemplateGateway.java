@@ -2,6 +2,7 @@ package com.example.EcommerceSpring.gateway;
 
 import com.example.EcommerceSpring.dto.CategoryDTO;
 import com.example.EcommerceSpring.dto.FakeStoreCategoryResponseDTO;
+import com.example.EcommerceSpring.mappers.GetAllCategoriesMapper;
 import org.springframework.boot.web.client.RestTemplateBuilder;
 import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Component;
@@ -29,11 +30,7 @@ public class FakeStoreRestTemplateGateway implements ICategoryGateway {
             throw new IOException("Error while fetching categories");
         }
 
-        return response.getBody().getCategories().stream().map(category ->
-                CategoryDTO
-                        .builder()
-                        .name(category)
-                        .build())
-                .toList();
+
+        return GetAllCategoriesMapper.toCategoryDTO(response.getBody());
     }
 }
