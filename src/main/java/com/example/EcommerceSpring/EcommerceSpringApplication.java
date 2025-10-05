@@ -3,8 +3,13 @@ package com.example.EcommerceSpring;
 import io.github.cdimascio.dotenv.Dotenv;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
+import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+/*
+     @EnableJpaAuditing --> enables JPA auditing features (createdAt, updatedAt)
+*/
 @SpringBootApplication
+@EnableJpaAuditing
 public class EcommerceSpringApplication {
 
     private static void loadEnvironmentVariables(){
@@ -14,7 +19,7 @@ public class EcommerceSpringApplication {
 
     public static void main(String[] args) {
 
-        loadEnvironmentVariables();
+        loadEnvironmentVariables() ;
 
         SpringApplication.run(EcommerceSpringApplication.class, args);
     }
