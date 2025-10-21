@@ -1,6 +1,7 @@
 package com.example.EcommerceSpring.controllers;
 
 import com.example.EcommerceSpring.dto.ProductDTO;
+import com.example.EcommerceSpring.dto.ProductWithCategoryDTO;
 import com.example.EcommerceSpring.services.IProductService;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
@@ -49,4 +50,9 @@ public class ProductController {
         return ResponseEntity.ok(response);
     }
 
+
+    @GetMapping("/{id}/details")
+    public ResponseEntity<ProductWithCategoryDTO> getProductWithCategory(@PathVariable Long id) throws Exception {
+        return ResponseEntity.ok(this.productService.getProductWithCategory(id));
+    }
 }

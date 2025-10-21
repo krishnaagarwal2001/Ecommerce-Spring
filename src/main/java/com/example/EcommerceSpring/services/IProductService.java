@@ -1,6 +1,7 @@
 package com.example.EcommerceSpring.services;
 
 import com.example.EcommerceSpring.dto.ProductDTO;
+import com.example.EcommerceSpring.dto.ProductWithCategoryDTO;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.util.List;
@@ -13,4 +14,6 @@ public interface IProductService {
     List<ProductDTO> getExpensiveProducts(double minPrice);
 
     List<ProductDTO> getAllProducts();
+
+    ProductWithCategoryDTO getProductWithCategory(Long id) throws Exception;
 }
