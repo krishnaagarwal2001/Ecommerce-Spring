@@ -31,6 +31,7 @@ public class ProductController {
     */
     @PostMapping
     public ResponseEntity<ProductDTO> createProduct(@RequestBody ProductDTO productDTO) throws Exception {
-        throw new Exception("Not Implemented");
+        ProductDTO response = this.productService.createProduct(productDTO);
+        return ResponseEntity.ok(response);
     }
 }

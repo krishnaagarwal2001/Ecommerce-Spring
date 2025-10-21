@@ -5,6 +5,16 @@ import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.data.jpa.repository.config.EnableJpaAuditing;
 
+
+/*
+    (Mode of Data while transfer)
+
+    Client <--> Controller (JSON)
+    Controller <--> Service (DTO)
+    Service <--> Repository (Entities)
+    Repository <--> DB (SQL, No-SQL)
+*/
+
 /*
      @EnableJpaAuditing --> enables JPA auditing features (createdAt, updatedAt)
 */

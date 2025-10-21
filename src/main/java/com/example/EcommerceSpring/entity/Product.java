@@ -1,6 +1,9 @@
 package com.example.EcommerceSpring.entity;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.FetchType;
+import jakarta.persistence.JoinColumn;
+import jakarta.persistence.ManyToOne;
 import lombok.*;
 
 /*
@@ -8,6 +11,8 @@ import lombok.*;
     An entity represents a table stored in a database. Every instance of an entity represents a row in the table.
 
     We must also ensure that the entity has a no-arg constructor and a primary key
+    JPA entity classes required explicit no-arg constructor. (JPA Specification)
+
     entity classes must not be declared final.
 */
 @Entity
@@ -26,4 +31,8 @@ public class Product extends BaseEntity {
     private String title;
     private String brand;
     private boolean popular;
+
+    @ManyToOne
+    @JoinColumn(nullable = false, name = "categoryId")
+    private Category category;
 }

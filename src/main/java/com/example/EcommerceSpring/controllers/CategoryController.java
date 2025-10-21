@@ -4,9 +4,7 @@ import com.example.EcommerceSpring.dto.CategoryDTO;
 import com.example.EcommerceSpring.services.ICategoryService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.io.IOException;
 import java.util.List;
@@ -61,6 +59,12 @@ In Golang, we can use uberFX lib for DI.
     @GetMapping
     public ResponseEntity<List<CategoryDTO>> getAllCategories() throws IOException {
         List<CategoryDTO> response = this.categoryService.getAllCategories();
+        return ResponseEntity.ok(response);
+    }
+
+    @PostMapping
+    public ResponseEntity<CategoryDTO> createCategory(@RequestBody CategoryDTO categoryDTO) throws IOException {
+        CategoryDTO response = categoryService.createCategory(categoryDTO);
         return ResponseEntity.ok(response);
     }
 }
