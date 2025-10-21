@@ -32,7 +32,15 @@ public class Product extends BaseEntity {
     private String brand;
     private boolean popular;
 
-    @ManyToOne
+    /*
+     * FetchType.EAGER — the associated Category entity is fetched immediately
+     * along with the Product (i.e., in the same query or via an immediate join).
+     *
+     * FetchType.LAZY — the associated Category entity is fetched only when it’s
+     * actually accessed in code (e.g., product.getCategory()), which triggers a
+     * separate SQL query at that moment.
+     */
+    @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "categoryId")
     private Category category;
 }
