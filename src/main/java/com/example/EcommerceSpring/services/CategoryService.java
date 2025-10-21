@@ -1,8 +1,11 @@
 package com.example.EcommerceSpring.services;
 
 import com.example.EcommerceSpring.dto.CategoryDTO;
+import com.example.EcommerceSpring.dto.CategoryWithAllProductsDTO;
+import com.example.EcommerceSpring.dto.ProductDTO;
 import com.example.EcommerceSpring.entity.Category;
 import com.example.EcommerceSpring.mappers.CategoryMapper;
+import com.example.EcommerceSpring.mappers.ProductMapper;
 import com.example.EcommerceSpring.repository.CategoryRepository;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -43,4 +46,14 @@ public class CategoryService implements ICategoryService {
         return categoryRepository.findByName(name).map(CategoryMapper::toDTO)
                 .orElseThrow(() -> new Exception("Product not found"));
     }
+
+    @Override
+    public CategoryWithAllProductsDTO getCategoryWithAllProducts(Long id) throws Exception {
+        Category category = categoryRepository.findById(id)
+                .orElseThrow(() -> new Exception("Category not found"));
+
+        return CategoryMapper.toCategoryWithAllProductsDTO(category);
+    }
+
+
 }
