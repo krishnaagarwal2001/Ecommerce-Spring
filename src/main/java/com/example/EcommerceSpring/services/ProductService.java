@@ -8,6 +8,9 @@ import com.example.EcommerceSpring.repository.CategoryRepository;
 import com.example.EcommerceSpring.repository.ProductRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
+import java.util.List;
+
 @Service
 public class ProductService implements IProductService {
     private final ProductRepository productRepository;
@@ -33,5 +36,27 @@ public class ProductService implements IProductService {
 
         Product savedProduct = productRepository.save(ProductMapper.toEntity(productDTO,category));
         return ProductMapper.toDTO(savedProduct);
+    }
+
+    @Override
+    public List<ProductDTO> getExpensiveProducts(double minPrice) {
+        List<ProductDTO> response = new ArrayList<>();
+
+        for(Product product : productRepository.findExpensiveProducts(minPrice)){
+            response.add(ProductMapper.toDTO(product));
+        }
+
+        return response;
+    }
+
+    @Override
+    public List<ProductDTO> getAllProducts() {
+        List<ProductDTO> response = new ArrayList<>();
+
+        for(Product product : productRepository.findAll()){
+            response.add(ProductMapper.toDTO(product));
+        }
+
+        return response;
     }
 }
