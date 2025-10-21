@@ -55,4 +55,9 @@ public class FakeStoreCategoryService implements ICategoryService {
     public CategoryDTO createCategory(CategoryDTO categoryDTO) throws IOException {
         return null;
     }
+
+    @Override
+    public CategoryDTO findByName(String name) throws Exception {
+        return null;
+    }
 }

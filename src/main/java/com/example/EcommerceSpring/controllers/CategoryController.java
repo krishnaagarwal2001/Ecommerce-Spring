@@ -57,7 +57,13 @@ In Golang, we can use uberFX lib for DI.
         ResponseEntity is used to configure the response (status code, headers etc.)
      */
     @GetMapping
-    public ResponseEntity<List<CategoryDTO>> getAllCategories() throws IOException {
+    public ResponseEntity<?> getAllCategories(@RequestParam(required = false) String name) throws Exception {
+
+        if(name != null && !name.isBlank()){
+            CategoryDTO categoryDTO = this.categoryService.findByName(name);
+            return ResponseEntity.ok(categoryDTO);
+        }
+
         List<CategoryDTO> response = this.categoryService.getAllCategories();
         return ResponseEntity.ok(response);
     }
