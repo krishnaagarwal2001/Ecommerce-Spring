@@ -15,4 +15,15 @@ public interface ProductRepository extends JpaRepository<Product, Long> {
     //this p.price is not column but java field
     @Query("SELECT p from Product p WHERE p.price > :minPrice")
     List<Product> findExpensiveProducts(@Param("minPrice") double minPrice);
+
+    @Query(value="Select * FROM product WHERE MATCH(name, description) AGAINST (:keyword)", nativeQuery = true)
+    List<Product> searchFullText(@Param("keyword") String keyword);
+
+    //:minPrice < "minPrice" in @Param("minPrice")
+    //:brand < "brand" in @Param("brand")
+    @Query("Select p from Product p WHERE p.price > :minPrice AND p.brand = :brand")
+    List<Product> findByBrandAndPrice(
+            @Param("minPrice") int price,
+            @Param("brand") String brandName
+    );
 }
