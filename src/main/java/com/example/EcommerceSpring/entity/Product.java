@@ -39,6 +39,11 @@ public class Product extends BaseEntity {
      * FetchType.LAZY — the associated Category entity is fetched only when it’s
      * actually accessed in code (e.g., product.getCategory()), which triggers a
      * separate SQL query at that moment.
+     *
+     * Default Values
+     * ManyToOne --> Eager
+     * OneToOne --> Eager
+     * OneToMany --> Lazy
      */
     @ManyToOne(fetch = FetchType.LAZY)
     @JoinColumn(nullable = false, name = "categoryId")
